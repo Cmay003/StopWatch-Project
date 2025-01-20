@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>StopWatch</title>
+    <style>
+        body {
+            background-color: #8EC5FC;
+            background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="text-center mt-28 space-y-8">
+        <h1 class="text-6xl">StopWatch</h1>
+        <div class="text-3xl bg-white py-12 mx-96">
+            <div class="flex gap-32 justify-center my-20">
+                <button onclick="start()" class="py-2 px-8 bg-green-400 hover:bg-green-500 rounded-lg">Start</button>
+                <button onclick="stop()" class="py-2 px-8 bg-red-400 hover:bg-red-500 rounded-lg">Stop</button>
+                <button onclick="reset()" class="py-2 px-8 bg-yellow-400 hover:bg-yellow-500 rounded-lg">Reset</button>
+                <button onclick="lap()" class="py-2 px-8 bg-blue-400 hover:bg-blue-500 rounded-lg">Lap</button>
+            </div>
+            <div class="bg-[#8EC5FC] mx-96 py-4">
+                <h1 class="text-6xl">
+                    <span id="hour">00</span>:
+                    <span id="min">00</span>:
+                    <span id="sec">00</span>:
+                    <span id="ms">00</span>
+                </h1>
+            </div>
+
+            
+
+            <ul id="lap-list" class="my-6 bg-[#E0C3FC] mx-64 h-64 width-96 overflow-auto ">
+            </ul>
+
+        </div>
+
+
+    </div>
+    <script>
+        let hr = document.querySelector("#hour");
+        let min = document.querySelector("#min");
+        let sec = document.querySelector("#sec");
+        let ms = document.querySelector("#ms");
+
+        let ms0 = 0, sec0 = 0, min0 = 0, hr0 = 0;
+        let clr;
+        const laps = []; // Array to store lap times
+
+        const start = () => {
+            if (!clr) {
+                clr = setInterval(() => {
+                    ms0++;
+                    if (ms0 === 100) {
+                        ms0 = 0;
+                        sec0++;
+                    }
+                    if (sec0 === 60) {
+                        sec0 = 0;
+                        min0++;
+                    }
+                    if (min0 === 60) {
+                        min0 = 0;
+                        hr0++;
+                    }
+
+                    // Update the display
+                    ms.innerText = ms0 < 10 ? "0" + ms0 : ms0;
+                    sec.innerText = sec0 < 10 ? "0" + sec0 : sec0;
+                    min.innerText = min0 < 10 ? "0" + min0 : min0;
+                    hr.innerText = hr0 < 10 ? "0" + hr0 : hr0;
+                }, 10);
+            }
+        };
+
+        const stop = () => {
+            clearInterval(clr);
+            clr = null;
+        };
+
+        const reset = () => {
+            stop();
+            ms0 = sec0 = min0 = hr0 = 0;
+            ms.innerText = "00";
+            sec.innerText = "00";
+            min.innerText = "00";
+            hr.innerText = "00";
+
+            // Clear laps
+            laps.length = 0;
+            document.querySelector("#lap-list").innerHTML = "";
+        };
+
+        const lap = () => {
+            // Format the current time
+            let time = `${hr0 < 10 ? "0" + hr0 : hr0}:${min0 < 10 ? "0" + min0 : min0}:${sec0 < 10 ? "0" + sec0 : sec0}:${ms0 < 10 ? "0" + ms0 : ms0}`;
+            // Add the lap time to the laps array
+            laps.push(time);
+            // Update the list
+            const lapList = document.querySelector("#lap-list");
+            lapList.innerHTML = ""; // Clear the list
+            laps.forEach((lap, index) => {
+                const li = document.createElement("li");
+                li.innerHTML = `<strong>Lap ${index + 1}:</strong> ${lap}`;
+                li.style.paddingBottom = '12px';
+                li.style.paddingTop = '12px';
+                lapList.appendChild(li);
+            });
+        };
+    </script>
+</body>
+
+</html>
