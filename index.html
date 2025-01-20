@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +10,7 @@
     <style>
         body {
             background-color: #8EC5FC;
-            background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+            background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)
 
         }
     </style>
@@ -17,16 +18,16 @@
 
 <body>
     <div class="text-center mt-28 space-y-8">
-        <h1 class="text-6xl">StopWatch</h1>
-        <div class="text-3xl bg-white py-12 mx-96">
-            <div class="flex gap-32 justify-center my-20">
-                <button onclick="start()" class="py-2 px-8 bg-green-400 hover:bg-green-500 rounded-lg">Start</button>
-                <button onclick="stop()" class="py-2 px-8 bg-red-400 hover:bg-red-500 rounded-lg">Stop</button>
-                <button onclick="reset()" class="py-2 px-8 bg-yellow-400 hover:bg-yellow-500 rounded-lg">Reset</button>
-                <button onclick="lap()" class="py-2 px-8 bg-blue-400 hover:bg-blue-500 rounded-lg">Lap</button>
+        <h1 class="md:text-6xl text-4xl">StopWatch</h1>
+        <div class="md:text-3xl text-xl bg-white py-12 lg:mx-64 md:mx-32 mx-8 ">
+            <div class="flex lg:gap-24 gap-12 gap-6 justify-center my-20">
+                <button onclick="start()" class="py-2 px-4 md:px-6 lg:px-8 bg-green-400 hover:bg-green-500 rounded-lg">Start</button>
+                <button onclick="stop()" class="py-2 px-4 md:px-6 lg:px-8 bg-red-400 hover:bg-red-500 rounded-lg">Stop</button>
+                <button onclick="reset()" class="py-2 px-4 md:px-6 lg:px-8 bg-yellow-400 hover:bg-yellow-500 rounded-lg">Reset</button>
+                <button onclick="lap()" class="py-2 px-4 md:px-6 lg:px-8 bg-blue-400 hover:bg-blue-500 rounded-lg">Lap</button>
             </div>
-            <div class="bg-[#8EC5FC] mx-96 py-4">
-                <h1 class="text-6xl">
+            <div class="bg-[#8EC5FC] md:mx-32 lg:mx-72 mx-24 py-4">
+                <h1 class="lg:text-6xl md:text-4xl text-4xl">
                     <span id="hour">00</span>:
                     <span id="min">00</span>:
                     <span id="sec">00</span>:
@@ -36,7 +37,7 @@
 
             
 
-            <ul id="lap-list" class="my-6 bg-[#E0C3FC] mx-64 h-64 width-96 overflow-auto ">
+            <ul id="lap-list" class="my-6 bg-[#E0C3FC] md:mx-28 lg:mx-64 mx-12 h-64  overflow-auto ">
             </ul>
 
         </div>
